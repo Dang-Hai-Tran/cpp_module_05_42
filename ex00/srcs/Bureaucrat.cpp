@@ -1,4 +1,4 @@
-#include "Bureaucrat.hpp"
+#include "../incs/Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat() : _name("Base Bureaucrat"), _grade(0) {
     std::cout << "Bureaucrat default constructor called." << std::endl;
@@ -23,6 +23,12 @@ Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name) {
 
 Bureaucrat::~Bureaucrat() {
     std::cout << "Bureaucrat destructor called." << std::endl;
+}
+
+Bureaucrat &Bureaucrat::operator=(Bureaucrat &other) {
+    std::cout << "Bureaucrat assignment operator overload called." << std::endl;
+    this->_grade = other._grade;
+    return (*this);
 }
 
 const std::string Bureaucrat::getName(void) { return this->_name; };

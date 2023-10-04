@@ -27,6 +27,12 @@ Form::Form(std::string name, bool isSigned, int signGrade, int execGrade)
 
 Form::~Form() { std::cout << "Form destructor called" << std::endl; }
 
+Form &Form::operator=(Form &other) {
+    std::cout << "Form assignment operator overload called." << std::endl;
+    this->_isSigned = other._isSigned;
+    return (*this);
+}
+
 std::string Form::getName(void) { return this->_name; }
 
 bool Form::getIsSigned(void) { return this->_isSigned; }

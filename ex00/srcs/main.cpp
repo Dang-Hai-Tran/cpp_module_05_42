@@ -1,4 +1,4 @@
-#include "Bureaucrat.hpp"
+#include "../incs/Bureaucrat.hpp"
 
 void createBureaucrat(const std::string name, int grade) {
     try {
