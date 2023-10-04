@@ -1,6 +1,6 @@
-#include "Bureaucrat.hpp"
+#include "../incs/Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() {
+Bureaucrat::Bureaucrat() : _name("Base Bureaucrat"), _grade(0) {
     std::cout << "Bureaucrat default constructor called." << std::endl;
 };
 
@@ -49,6 +49,17 @@ void Bureaucrat::decrement(unsigned int minusGrade) {
         throw(Bureaucrat::GradeTooLowException());
     else
         this->_grade += minusGrade;
+}
+
+void Bureaucrat::signForm(Form &form) {
+    try {
+        form.beSigned(*this);
+        std::cout << this->getName() << " signed " << form.getName()
+                  << std::endl;
+    } catch (std::exception &e) {
+        std::cout << this->getName() << " couldn't sign " << form.getName()
+                  << " because " << e.what() << std::endl;
+    };
 }
 
 std::ostream &operator<<(std::ostream &os, Bureaucrat &bureaucrat) {

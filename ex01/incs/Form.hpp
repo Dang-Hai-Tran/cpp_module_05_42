@@ -3,6 +3,8 @@
 
 #include "Bureaucrat.hpp"
 
+class Bureaucrat;
+
 class Form {
   private:
     const std::string _name;
@@ -12,14 +14,28 @@ class Form {
 
   public:
     Form(void);
-    Form(std::string name, int signGrade, int execGrade);
-    const std::string getName();
-    const bool getIsSigned();
-    const int getSignGrade();
-    const int getExecGrade();
-    void beSigned(const Bureaucrat &b);
-    class GradeTooHighException;
-    class GradeTooLowException;
+    Form(Form &other);
+    Form(const std::string name, bool isSigned, int signGrade, int execGrade);
+    ~Form();
+    std::string getName(void);
+    bool getIsSigned(void);
+    int getSignGrade(void);
+    int getExecGrade(void);
+    void beSigned(Bureaucrat &b);
+    class GradeTooHighException : public std::exception {
+      public:
+        virtual const char *what(void) const throw();
+    };
+
+    class GradeTooLowException : public std::exception {
+      public:
+        virtual const char *what(void) const throw();
+    };
+
+    class AlreadySignedException : public std::exception {
+      public:
+        virtual const char *what(void) const throw();
+    };
 };
 
 std::ostream &operator<<(std::ostream &os, Form &form);

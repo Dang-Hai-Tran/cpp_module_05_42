@@ -3,15 +3,18 @@
 
 #include <iostream>
 #include <string>
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat {
   private:
     const std::string _name;
     int _grade;
-    static const int HIGHEST_GRADE = 1;
-    static const int LOWEST_GRADE = 150;
 
   public:
+    static const int HIGHEST_GRADE = 1;
+    static const int LOWEST_GRADE = 150;
     Bureaucrat();
     Bureaucrat(Bureaucrat &other);
     Bureaucrat(const std::string name, int grade);
@@ -28,9 +31,10 @@ class Bureaucrat {
     class GradeTooLowException : public std::exception {
       public:
         virtual const char *what(void) const throw();
-    }; 
+    };
     void increment(unsigned int addGrade);
     void decrement(unsigned int minusGrade);
+    void signForm(Form &form);
 };
 
 std::ostream &operator<<(std::ostream &os, Bureaucrat &bureaucrat);
